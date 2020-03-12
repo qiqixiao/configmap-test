@@ -20,10 +20,33 @@ type iFactory struct {
 	Topics	string	`yaml:"topics"`
 }
 
-type Config struct {
+type SpecificConf struct{
 	Kafka 		iKafaConsumer		`yaml:"kafka_consumer"`
 	FactoryList	map[string]iFactory	`yaml:"factory_list"`
 }
+
+type Config struct{
+	AppName	string	`yaml:"appname"`
+	Port	string	`yaml:"port"`
+	Mode	string	`yaml:"mode"`
+}
+
+
+func GetSpecific() (s *SpecificConf) {
+	path := "conf-" + Conf.Mode + ".yml"
+	specific, err := ioutil.ReadFile(path)
+	if err != nil {
+		logrus.Errorf("specific yamlFile.Get err %v ", err)
+		return nil
+	}
+	err = yaml.Unmarshal(specific, &s)
+	if err != nil  {
+		logrus.Error("specific yamlFile parse error: ", err)
+		return nil
+	}
+	return s
+}
+
 
 func init() {
 	Conf = &Config{}

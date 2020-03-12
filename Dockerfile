@@ -15,6 +15,7 @@ COPY ./main.go /app/iov.tencent.com/src/configmap-test/
 COPY ./go.mod /app/iov.tencent.com/src/configmap-test/
 COPY ./go.sum /app/iov.tencent.com/src/configmap-test/
 COPY ./config/conf.yml /app/iov.tencent.com/src/configmap-test/config/
+COPY ./config/conf-dev.yml /app/iov.tencent.com/src/configmap-test/config/
 COPY ./config/config.go /app/iov.tencent.com/src/configmap-test/config/
 
 RUN go build
