@@ -3,9 +3,17 @@ package main
 import (
 	"configmap-test/config"
 	"github.com/sirupsen/logrus"
+	"time"
 )
 
 func main()  {
-	logrus.Error(config.Conf.Kafka)
-	logrus.Error(config.Conf.FactoryList)
+	logrus.Info(config.Conf.Kafka)
+	logrus.Info(config.Conf.FactoryList)
+	t1 := time.NewTimer(time.Hour * 1)
+	for {
+		select {
+		case <-t1.C:
+			t1.Reset(time.Second * 1)
+		}
+	}
 }
