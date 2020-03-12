@@ -13,7 +13,8 @@ func main()  {
 	for {
 		select {
 		case <-t1.C:
-			t1.Reset(time.Second * 1)
+			t1.Reset(time.Minute * 1)
+			logrus.Info(config.Conf.FactoryList)
 		}
 	}
 }
