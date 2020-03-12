@@ -1,0 +1,11 @@
+kafka_consumer:
+  bootstrap: "127.0.0.1:9092"
+  topics: ["gq"]
+  group_id: "data_group-1"
+factory_list:
+  gq:
+    id: 10010
+    topics: "gq"
+  yq:
+    id: 10011
+    topics: "yq"
